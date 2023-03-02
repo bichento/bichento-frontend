@@ -25,13 +25,22 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const res = await client.getEntry<Pet>(params?.id as string)
+  try {
+    const res = await client.getEntry<Pet>(params?.id as string)
 
-  return {
-    props: {
-      pet: res
-    },
-    revalidate: 1,
+    return {
+      props: {
+        pet: res
+      },
+      revalidate: 1,
+    }
+  } catch (error) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false
+      }
+    }
   }
 }
 
