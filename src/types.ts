@@ -19,8 +19,12 @@ export type Pet = Entry<{
   breed: string;
   castrated: boolean;
   description: string;
-  gender: "male" | "female";
+  gender: Gender;
   name: string;
-  specie: "cat" | "dog";
+  specie: Specie;
   thumbnail: ContentfulMedia;
 }>;
+
+export type Specie = "cat" | "dog";
+
+export type Gender = "male" | "female";
