@@ -30,7 +30,8 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   return {
     props: {
       pet: res
-    }
+    },
+    revalidate: 1,
   }
 }
 

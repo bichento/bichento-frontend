@@ -1,8 +1,9 @@
 import PetCard from '@/components/pet-card'
 import { Pet } from '@/types'
 import { createClient, Entry } from 'contentful'
+import { GetStaticProps } from 'next'
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const client = createClient({
     space: process.env.CONTENTFUL_SPACE_ID || '',
     accessToken: process.env.CONTENTFUL_ACCESS_KEY || '',
@@ -15,7 +16,8 @@ export async function getStaticProps() {
   return {
     props: {
       pets: res.items
-    }
+    },
+    revalidate: 1
   }
 }
 
