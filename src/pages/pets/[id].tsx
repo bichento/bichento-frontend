@@ -20,7 +20,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
         id: pet.sys.id
       }
     })),
-    fallback: false
+    fallback: true
   }
 }
 
@@ -41,6 +41,15 @@ type Props = {
 
 const PetPage = ({ pet }: Props) => {
   console.log(pet)
+
+  if (!pet) {
+    return (
+      <div>
+        <h1>Loading...</h1>
+      </div>
+    )
+  }
+
   return (
     <div>
       <h1>Pet</h1>
