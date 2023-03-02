@@ -1,4 +1,6 @@
-import { createClient } from 'contentful'
+import PetCard from '@/components/pet-card'
+import { Pet } from '@/types'
+import { createClient, Entry } from 'contentful'
 
 export async function getStaticProps() {
   const client = createClient({
@@ -6,7 +8,7 @@ export async function getStaticProps() {
     accessToken: process.env.CONTENTFUL_ACCESS_KEY || '',
   })
 
-  const res = await client.getEntries({
+  const res = await client.getEntries<Pet>({
     content_type: 'pet'
   })
 
@@ -18,14 +20,18 @@ export async function getStaticProps() {
 }
 
 type Props = {
-  pets: unknown[]
+  pets: Pet[]
 }
 
-export default function Home(props: any) {
-  console.log(props.pets)
+export default function Home({ pets }: Props) {
+  console.log(pets)
+
   return (
     <div>
       <h1>Home</h1>
+      {pets.map(pet => (
+        <PetCard key={pet.sys.id} pet={pet} />
+      ))}
     </div>
   )
 }
