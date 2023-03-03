@@ -6,7 +6,17 @@ import { NextPage } from "next";
 import { Copyright } from "@mui/icons-material";
 import { Box } from "@mui/system";
 
-const theme = createTheme()
+const theme = createTheme({
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          borderRadius: 24
+        }
+      }
+    }
+  }
+})
 
 export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
   getLayout?: (page: ReactElement) => ReactNode

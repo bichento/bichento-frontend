@@ -1,13 +1,13 @@
 import CastratedChip from "@/components/castrated-chip"
 import GenderChip from "@/components/gender-chip"
-import PetCard from "@/components/pet-card"
 import SpecieChip from "@/components/specie-chip"
 import { Pet } from "@/types"
-import { Typography } from "@mui/material"
+import { Breadcrumbs, Typography } from "@mui/material"
 import { Box, Container, Stack } from "@mui/system"
 import { createClient } from "contentful"
 import { GetStaticPaths, GetStaticProps } from "next"
 import Image from "next/image"
+import Link from "next/link"
 import { ReactMarkdown } from "react-markdown/lib/react-markdown"
 
 const client = createClient({
@@ -75,6 +75,12 @@ const PetPage = ({ pet }: Props) => {
         }}
       >
         <Container maxWidth="sm">
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link style={{ textDecoration: 'none' }} color="inherit" href="/">
+              Home
+            </Link>
+            <Typography color="text.primary">{pet.fields.name}</Typography>
+          </Breadcrumbs>
           <Typography variant="h1">{pet.fields.name}</Typography>
           <Image
             src={`https:${pet.fields.thumbnail.fields.file.url}`}
