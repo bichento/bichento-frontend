@@ -32,7 +32,7 @@ const Layout = ({ Component, pageProps }: Props) => {
   return (
     <ThemeProvider theme={theme}>
       <Script
-        src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+        src="https://www.googletagmanager.com/gtag/js?id=G-YDE08G1MPC"
         strategy="afterInteractive"
       />
       <Script id="google-analytics" strategy="afterInteractive">
