@@ -5,6 +5,8 @@ import { AppProps } from "next/app";
 import { NextPage } from "next";
 import { Copyright } from "@mui/icons-material";
 import { Box } from "@mui/system";
+import Head from "next/head";
+import Script from "next/script";
 
 const theme = createTheme({
   components: {
@@ -29,6 +31,19 @@ type Props = AppProps & {
 const Layout = ({ Component, pageProps }: Props) => {
   return (
     <ThemeProvider theme={theme}>
+      <Script
+        src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-YDE08G1MPC');
+        `}
+      </Script>
       <CssBaseline />
       <AppBar position="relative">
         <Toolbar>
